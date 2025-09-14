@@ -1,0 +1,33 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2.2rem;
+  padding: 0.5rem 0;
+  background: repeating-linear-gradient(
+    135deg,
+    #e3f0fa,
+    #e3f0fa 20px,
+    #b3d6ec 22px,
+    #e3f0fa 40px
+  );
+  border-radius: 1.5rem;
+  border: 1.5px solid #b3d6ec;
+}
+
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

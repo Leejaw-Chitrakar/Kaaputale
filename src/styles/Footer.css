@@ -1,0 +1,11 @@
+.footer {
+  background: linear-gradient(90deg, #e3f0fa 0%, #b3d6ec 100%);
+  color: #3a5e8c;
+  padding: 2rem 0 1.2rem 0;
+  margin-top: 3rem;
+  text-align: center;
+  border-top: 2px solid #b3d6ec;
+  font-family: "DM Serif Display", "Georgia", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
