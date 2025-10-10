@@ -12,7 +12,7 @@
 .logo-title-row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.2rem;
 }
 
@@ -38,4 +38,35 @@
 
 .logo-title-row img {
   border-radius: 50%;
+}
+
+.cart{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: solid 1px #3a5e8c;
+  border-radius: 20px;
+  background: #b3d1e0;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  color: #3a5e8c;
+}
+
+.cart-count {
+  background: #5081c1;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  min-width: 1.5em;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 2px 8px -2px rgba(106, 123, 162, 0.15);
 }

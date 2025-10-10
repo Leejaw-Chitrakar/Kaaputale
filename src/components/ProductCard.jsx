@@ -1,9 +1,9 @@
 import React from "react";
 import "../styles/ProductCard.css";
 
-function ProductCard({ product, onView }) {
+function ProductCard({ product, onView, onAddToCart }) {
   return (
-    <div className="product-card" onClick={() => onView(product)}>
+    <div className="product-card">
       <img
         className="product-image"
         src={product.imageUrl}
@@ -11,15 +11,15 @@ function ProductCard({ product, onView }) {
       />
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
-        <button
-          className="view-button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onView(product);
-          }}
-        >
-          View Details
-        </button>
+          <button
+            className="view-button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onView(product);
+            }}
+          >
+            View Details
+          </button>
       </div>
     </div>
   );

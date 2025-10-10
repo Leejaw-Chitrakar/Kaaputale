@@ -2,7 +2,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import "../styles/ProductGrid.css";
 
-function ProductGrid({ products, showProductDetails }) {
+function ProductGrid({ products, showProductDetails, onAddToCart }) {
   return (
     <div className="product-grid">
       {products.map((product) => (
@@ -10,6 +10,7 @@ function ProductGrid({ products, showProductDetails }) {
           key={product.id}
           product={product}
           onView={showProductDetails}
+          onAddToCart={onAddToCart}
         />
       ))}
     </div>

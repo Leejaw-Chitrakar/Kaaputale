@@ -46,13 +46,15 @@
 }
 
 .product-card .product-name {
-  font-size: 1.65rem;
+  font-size: 1.32rem;
+  height: 70px;
   font-family: "DM Serif Display", "Georgia", serif;
   font-weight: 700;
-  margin-bottom: 0.35rem;
+  margin-bottom: 1rem;
   color: #3a5e8c;
   letter-spacing: 0.02em;
   text-shadow: 0 1px 0 #e3f0fa, 0 2px 2px #b3d6ec;
+  text-align: center;
 }
 
 .product-card .product-description {
@@ -61,6 +63,35 @@
   font-size: 1.05rem;
   font-family: "Inter", "Arial", sans-serif;
   opacity: 0.92;
+}
+
+.product-card .product-btn{
+  padding: 5px 0;
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.product-card .cart-btn {
+  background: #fff;
+  border: 1.5px solid #3a5e8c;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3a5e8c;
+  font-size: 1.3rem;
+  margin-left: 0.2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 8px -2px rgba(106, 123, 162, 0.08);
+}
+.product-card .cart-btn:hover {
+  background: #b3d6ec;
+  color: #fff;
+  border-color: #3a5e8c;
 }
 
 .product-card .view-button {

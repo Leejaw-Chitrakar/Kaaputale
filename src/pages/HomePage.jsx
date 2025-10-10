@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header.jsx";
 import ProductGrid from "../components/ProductGrid.jsx";
-import Modal from "../components/Modal.jsx";
+import Model from "../components/Model.jsx";
 import Footer from "../components/Footer.jsx";
 import ContactUs from "../components/ContactUs.jsx";
 import "../styles/HomePage.css";
 
-function HomePage({ products, modalProduct, showProductDetails, closeModal }) {
+function HomePage({ products }) {
+  const [cartCount, setCartCount] = useState(0);
+  const [modelProduct, setModelProduct] = useState(null);
+
+  const handleAddToCart = () => {
+    setCartCount((count) => count + 1);
+  };
+
+  const showProductDetails = (product) => {
+    setModelProduct(product);
+  };
+
+  const closeModel = () => {
+    setModelProduct(null);
+  };
+
   return (
     <div className="home-page-container">
-      <Header />
+      <Header cartCount={cartCount} />
       <main className="main-content">
         <div className="container">
           <h2 className="collection-title">Our Collection</h2>
@@ -19,10 +34,11 @@ function HomePage({ products, modalProduct, showProductDetails, closeModal }) {
           <ProductGrid
             products={products}
             showProductDetails={showProductDetails}
+            onAddToCart={handleAddToCart}
           />
         </div>
       </main>
-      {modalProduct && <Modal product={modalProduct} onClose={closeModal} />}
+      {modelProduct && <Model product={modelProduct} onClose={closeModel} onAddToCart={handleAddToCart} />}
       <ContactUs />
       <Footer />
     </div>
