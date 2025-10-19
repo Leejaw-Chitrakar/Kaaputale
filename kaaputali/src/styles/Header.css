@@ -1,0 +1,72 @@
+.header {
+  background: linear-gradient(90deg, #e3f0fa 80%, #b3d6ec 100%);
+  border-bottom: 2px solid #b3d6ec;
+  box-shadow: 0 6px 24px -4px rgba(106, 123, 162, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  text-align: center;
+  padding: 0.5rem 0 0.2rem 0;
+}
+
+.logo-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.header-logo {
+  height: 5rem;
+  width: 5rem;
+  padding: 10px;
+  object-fit: contain;
+  display: block;
+}
+
+.header .title {
+  font-size: 2.3rem;
+  font-family: "DM Serif Display", "Georgia", serif;
+  font-weight: 700;
+  color: #3a5e8c;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 0 #e3f0fa, 0 2px 2px #b3d6ec;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo-title-row img {
+  border-radius: 50%;
+}
+
+/* .cart{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: solid 1px #3a5e8c;
+  border-radius: 20px;
+  background: #b3d1e0;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+  color: #3a5e8c;
+}
+
+.cart-count {
+  background: #5081c1;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  min-width: 1.5em;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 2px 8px -2px rgba(106, 123, 162, 0.15);
+} */
