@@ -129,7 +129,7 @@ function App() {
     price: 0,
   },
   {id: 14,
-    name: "Midnight Rose Wrist Warmers",
+    name: "Red Fingerless Gloves",
     type: "accessory",
     description: "Elegant, hand-crocheted black fingerless gloves featuring bold magenta accents and matching magenta bows. Made from a soft, plush yarn for warmth and a dramatic, stylish look.",
     imageUrl: W3,

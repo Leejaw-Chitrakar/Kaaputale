@@ -36,9 +36,9 @@ function Model({ product, onClose }) {
               </p>
             </div> */}
             <div className="model-button">
-              <button className="buy-button">
+              {/* <button className="buy-button">
                 Buy now
-              </button>
+              </button> */}
               {/* <button className="add-to-cart-button" onClick={() => onAddToCart && onAddToCart(product)}>
                 Add to Cart
               </button> */}
