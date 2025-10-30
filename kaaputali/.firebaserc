@@ -1,9 +1,8 @@
 {
   "projects": {
     "default": "kaaputale"
-  }
-
-  ,"targets": {
+  },
+  "targets": {
     "kaaputale": {
       "hosting": {
         "site": "kaaputale"

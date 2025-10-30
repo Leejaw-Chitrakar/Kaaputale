@@ -36,7 +36,16 @@
   align-items: center;
 }
 
-.logo-title-row img {
+.border {
+  max-height: 3rem;
+  max-width: 27rem;
+}
+
+.b1{
+  transform: rotate(180deg);
+}
+
+.logo-title-row h1 img {
   border-radius: 50%;
 }
 

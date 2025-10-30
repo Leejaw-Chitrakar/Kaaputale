@@ -1,10 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const TodoModel = require('./Models/orders')
-const OrderModel = require('./Models/orders')
+const OrderModel = require('./Models/order')
 // Flexible model for quick add-to-cart/testing (stores arbitrary payloads)
-const SimpleOrder = mongoose.model('orders', new mongoose.Schema({}, { strict: false }));
+// const SimpleOrder = mongoose.model('orders', new mongoose.Schema({}, { strict: false }));
 
 const app = express()
 app.use(cors())
@@ -27,6 +26,6 @@ app.post('/add', (req, res) => {
       .catch(err => res.status(500).json({ error: err.message }));
 });
 
-app.listen(3001, () =>{
+app.listen(8080, () =>{
     console.log("Server is running") 
 })

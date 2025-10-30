@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Model.css";
 
-function Model({ product, onClose }) {
+function Model({ product, onClose, onShowOrder }) {
   return (
     <div className="model-overlay">
       <div className="model-content">
@@ -30,13 +30,13 @@ function Model({ product, onClose }) {
           <div className="model-info">
             <h2 className="model-title">{product.name}</h2>
             <p className="model-description">{product.description}</p>
-            {/* <div className="product-price">
+            <div className="product-price">
               <p>
                 Price: <strong>RS.{product.price}</strong>
               </p>
-            </div> */}
+            </div>
             <div className="model-button">
-              {/* <button className="buy-button">
+              {/* <button className="buy-button" onClick={() => onShowOrder && onShowOrder(product)}>
                 Buy now
               </button> */}
               {/* <button className="add-to-cart-button" onClick={() => onAddToCart && onAddToCart(product)}>

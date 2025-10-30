@@ -1,3 +1,6 @@
+firebase.json
+
+
 {
   "hosting": {
     "public": "dist",

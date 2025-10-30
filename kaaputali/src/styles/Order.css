@@ -1,0 +1,343 @@
+:root {
+    --primary-blue: #3A6B8D;
+    --accent-blue: #89c8ff;
+    --primary-light: #89c8ff;
+    --text-dark: #292929;
+    --text-light: #393939;
+    --border-gray: #E0DCD7;
+    --bg-light: #F0F5FA;
+}
+
+.required-indicator {
+    color: #ef4444; /* Red color for asterisk */
+    margin-left: 2px;
+}
+
+.order-overlay {
+    position: fixed;
+    height: 100vh;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.order-container {
+    position: relative;
+    background: var(--bg-light);
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 1200px;
+    max-height: 80vh; /* Increased height for better view */
+    padding: 2rem;
+    top: -15px;
+    overflow-y: auto;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.order-close{
+    position: absolute;
+    top: 50px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    padding: 6px 10px;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    z-index: 125;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s;
+}
+.order-close:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    /* Pull the close button back inside the container for mobile devices */
+    .order-close {
+        top: 1rem;
+        right: 1rem;
+        box-shadow: none;
+        background: #FAFAFA;
+    }
+}
+
+/* Confirmation Card needs to be centered as well */
+.confirmation-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    border-top: 4px solid var(--primary-blue);
+    background: var(--bg-light); 
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    margin: auto; 
+}
+
+/* --- GRID LAYOUT FOR SECTIONS --- */
+.checkout-grid-container {
+    display: grid;
+    gap: 1.5rem; /* Spacing between the two columns/rows */
+    grid-template-columns: 1fr; /* Default: Single column for mobile */
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .checkout-grid-container {
+        grid-template-columns: 1fr 1fr; /* Two columns on desktop */
+    }
+}
+/* --- END GRID LAYOUT --- */
+
+/* Typography and Headers */
+.header-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.form-description {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+.form-section {
+    padding: 1.5rem;
+    background: #FAFAFA;
+    border-radius: 1rem;
+    border: 1px solid #F3F4F6;
+    height: 100%; 
+}
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+.form-input, .form-select {
+    /* width: 94%; is too small, use 100% and let padding handle it */
+    width: 100%; 
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-gray);
+    border-radius: 0.5rem;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+    background-color: var(--bg-light);
+    box-sizing: border-box; /* Important for 100% width */
+}
+.form-input:focus, .form-select:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 113, 165, 0.2);
+}
+
+/* Payment Options */
+.payment-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.payment-option-card {
+    padding: 1rem;
+    border: 2px solid var(--border-gray);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.payment-option-card:hover {
+    border-color: #00cae9;
+}
+.payment-option-card.selected {
+    border-color: var(--primary-blue);
+    background-color: var(--primary-light);
+}
+.payment-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.payment-icon-wrapper {
+    padding: 0.6rem;
+    border-radius: 50%;
+    background-color: #e6f2ff;
+    color: var(--accent-blue);
+    line-height: 0;
+    display: flex;
+}
+.payment-option-card.selected .payment-icon-wrapper {
+    background-color: #2484eb;
+    color: var(--bg-light);
+}
+.payment-details h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+.payment-details p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin: 0;
+}
+.payment-radio {
+    accent-color: var(--primary-blue);
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+}
+
+/* Conditional Payment Content */
+.conditional-payment-box {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-gray);
+    border-radius: 0.75rem;
+    background-color: var(--bg-light);
+}
+.payment-sub-heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.esewa-heading {
+    color: var(--accent-blue);
+}
+.cod-heading {
+    color: #3B82F6; /* Blue for COD */
+}
+.qr-code-wrapper {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.qr-code-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 0.5rem;
+    border: 3px solid var(--primary-blue);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.payment-instructions {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Submit Button */
+.submit-button {
+    width: 100%;
+    padding: 0.9rem 0;
+    background-color: var(--primary-blue);
+    color: white;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 143, 165, 0.3);
+    transition: background-color 0.2s, transform 0.1s;
+}
+.submit-button.mt-6 {
+    margin-top: 1.5rem; /* Replaced custom class with defined margin */
+}
+.submit-button:hover {
+    background-color: var(--accent-blue);
+    transform: translateY(-1px);
+}
+.submit-button:active {
+    transform: translateY(0);
+}
+
+/* Error Message Box */
+.error-message-box {
+    background-color: #FEF2F2; /* Red-50 */
+    border: 1px solid #FCA5A5; /* Red-300 */
+    color: #991B1B; /* Red-800 */
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+.error-icon {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Confirmation Card */
+.confirmation-card svg {
+    width: 3rem;
+    height: 3rem;
+    color: lime;
+    margin: 0 auto 1rem;
+}
+.confirmation-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+.confirmation-card .message {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+.order-summary-box {
+    text-align: left;
+    background-color: #F8F8F8;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #E5E5E5;
+}
+.order-summary-box h4 {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px dashed #DDD;
+    padding-bottom: 0.25rem;
+}
+.order-summary-box p {
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    margin: 0.25rem 0;
+}
+.order-summary-box .payment-type {
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+.capitalize {
+    text-transform: capitalize;
+}
