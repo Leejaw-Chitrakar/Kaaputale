@@ -116,7 +116,7 @@
   border-color: #3a5e8c;
 }
 
-@media (min-width: 350px) {
+@media (max-width: 450px) {
   .product-card{
     height: 10rem;
   }
