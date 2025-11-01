@@ -47,3 +47,31 @@ body {
   font-family: "Inter", "Arial", sans-serif;
   opacity: 0.92;
 }
+
+@media (max-width: 768px) {
+  
+  .collection-title {
+    font-size: 1.6rem;
+    font-family: "DM Serif Display", "Georgia", serif;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #3a5e8c;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 0 #e3f0fa, 0 2px 2px #b3d6ec;
+  }
+  
+  .collection-description {
+    text-align: center;
+    color: #6a7ba2;
+    margin-bottom: 2.5rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    font-family: "Inter", "Arial", sans-serif;
+    opacity: 0.92;
+  }
+
+  
+}

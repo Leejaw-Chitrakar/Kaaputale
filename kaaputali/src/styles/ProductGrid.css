@@ -14,9 +14,10 @@
   border: 1.5px solid #b3d6ec;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 350px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 

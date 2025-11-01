@@ -45,7 +45,7 @@ function App() {
         description:
             "A beautiful, handcrafted wool rose in a soft peach hue, beautifully wrapped in an elegant dark paper. This piece captures a timeless and gentle beauty that will never wilt.",
         imageUrl: I3,
-        price: 200,
+        price: 250,
     },
     {
         id: 4,
@@ -81,7 +81,7 @@ function App() {
         description:
             "This striking bouquet showcases a single, vibrant scarlet rose, handcrafted from soft wool. The bold red stands out against the sleek black and gold-trimmed wrap, creating a dramatic and unforgettable gift.",
         imageUrl: I7,
-        price: 200,
+        price: 250,
     },
     {
         id: 8,
@@ -89,7 +89,7 @@ function App() {
         type: "flower",
         description: "This unique bouquet features a soft, white crocheted flower with a vibrant green stem, beautifully contrasted by the bold black and gold-trimmed wrap. It’s an artistic and lasting piece that makes a powerful statement.",
         imageUrl: I8,
-        price: 200,
+        price: 250,
     },
     {
         id: 9,
