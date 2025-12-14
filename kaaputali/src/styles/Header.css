@@ -82,21 +82,21 @@
 
 
 @media (max-width: 768px) {
-  .container{
+  .container {
     width: 70%;
   }
-  
+
   .header .title {
-  font-size: 1.8rem;
-  font-family: "DM Serif Display", "Georgia", serif;
-  font-weight: 700;
-  color: #3a5e8c;
-  letter-spacing: 0.03em;
-  text-shadow: 0 1px 0 #e3f0fa, 0 2px 2px #b3d6ec;
-  margin: 0;
-  display: flex;
-  align-items: center;
-}
+    font-size: 1.8rem;
+    font-family: "DM Serif Display", "Georgia", serif;
+    font-weight: 700;
+    color: #3a5e8c;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 0 #e3f0fa, 0 2px 2px #b3d6ec;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
 
   .header-logo {
     height: 3rem;
@@ -105,6 +105,6 @@
     object-fit: contain;
     display: block;
   }
-  
+
 
 }

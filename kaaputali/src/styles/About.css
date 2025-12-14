@@ -1,0 +1,38 @@
+/* About Section Styles */
+.about-section {
+    padding: 4rem 1.5rem;
+    background-color: transparent;
+    /* Inherits main background */
+    text-align: center;
+}
+
+.about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 1px solid #b3d6ec;
+    box-shadow: 0 4px 20px rgba(58, 94, 140, 0.05);
+}
+
+.about-title {
+    font-family: "DM Serif Display", serif;
+    font-size: 2.5rem;
+    color: #3a5e8c;
+    margin-bottom: 1.5rem;
+}
+
+.about-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #6a7ba2;
+    margin-bottom: 1rem;
+}
+
+.about-highlight {
+    color: #3a5e8c;
+    font-weight: 600;
+}
