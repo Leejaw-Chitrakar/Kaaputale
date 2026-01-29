@@ -59,9 +59,9 @@ function Model({ product, onClose, onShowOrder }) {
               </p>
             </div>
             <div className="model-actions">
-              <button className="buy-button" onClick={() => onShowOrder && onShowOrder(product)}>
+              {/* <button className="buy-button" onClick={() => onShowOrder && onShowOrder(product)}>
                 Buy now
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
