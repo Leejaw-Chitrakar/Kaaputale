@@ -9,3 +9,9 @@
   font-size: 1.1rem;
   letter-spacing: 0.01em;
 }
+
+@media (max-width: 768px) {
+  .footer {
+    margin-bottom: 5rem;
+  }
+}

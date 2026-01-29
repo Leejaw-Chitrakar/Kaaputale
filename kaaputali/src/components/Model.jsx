@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Model.css";
 
 function Model({ product, onClose, onShowOrder }) {
+  useEffect(() => {
+    // Lock scroll on mount
+    document.body.style.overflow = "hidden";
+
+    // Handle Escape key
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [onClose]);
+
   return (
-    <div className="model-overlay">
+    <div className="model-overlay" onClick={(e) => {
+      if (e.target.classList.contains('model-overlay')) onClose();
+    }}>
       <div className="model-content">
         <button onClick={onClose} className="close-button" aria-label="Close modal">
           <svg
@@ -22,11 +43,13 @@ function Model({ product, onClose, onShowOrder }) {
           </svg>
         </button>
         <div className="model-body">
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className="model-image"
-          />
+          <div className="model-image-container">
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="model-image"
+            />
+          </div>
           <div className="model-info">
             <h2 className="model-title">{product.name}</h2>
             <p className="model-description">{product.description}</p>
@@ -35,13 +58,10 @@ function Model({ product, onClose, onShowOrder }) {
                 Price: <strong>RS.{product.price}</strong>
               </p>
             </div>
-            <div className="model-button">
-              {/* <button className="buy-button" onClick={() => onShowOrder && onShowOrder(product)}>
+            <div className="model-actions">
+              <button className="buy-button" onClick={() => onShowOrder && onShowOrder(product)}>
                 Buy now
-              </button> */}
-              {/* <button className="add-to-cart-button" onClick={() => onAddToCart && onAddToCart(product)}>
-                Add to Cart
-              </button> */}
+              </button>
             </div>
           </div>
         </div>

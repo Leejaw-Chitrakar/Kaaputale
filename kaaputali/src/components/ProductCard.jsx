@@ -5,7 +5,9 @@ function ProductCard({ product, onView, onAddToCart }) {
   return (
     <div className="product-card" onClick={(e) => {
               e.stopPropagation();
-              onView(product);
+              if (onView) {
+                onView(product);
+              }
             }}>
       <img
         className="product-image"

@@ -111,16 +111,33 @@
     }
 
     .hero-container {
-        height: 60vh;
-        min-height: 400px;
+        height: 70vh; /* Slightly taller on mobile for better visibility */
+        min-height: 450px;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        padding: 0 10px;
     }
 
     .hero-subtitle {
+        font-size: 0.95rem;
+        padding: 0 15px;
+        margin-bottom: 2rem;
+    }
+
+    .hero-cta-btn {
+        padding: 12px 30px;
         font-size: 1rem;
-        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-container {
+        height: 60vh;
     }
 }

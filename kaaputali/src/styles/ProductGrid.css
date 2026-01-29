@@ -15,10 +15,19 @@
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 768px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small phones as requested */
+    gap: 0.8rem;
+    padding: 0.4rem;
   }
 }
 

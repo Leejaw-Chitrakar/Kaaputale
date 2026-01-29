@@ -4,51 +4,66 @@ import logo from '../assets/LOGO.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = ({ cartCount = 0 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+import { Link, NavLink } from 'react-router-dom';
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+const NavBar = ({ cartCount = 0 }) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = React.useRef(0);
+
+  React.useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Only trigger if scroll has moved and is not at top
+          if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+            setIsVisible(false);
+          } else {
+            setIsVisible(true);
+          }
+          
+          lastScrollY.current = currentScrollY;
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className="navbar-custom">
+    <nav className={`navbar-custom ${!isVisible ? 'navbar-hidden' : ''}`}>
       <div className="navbar-container">
         {/* Brand */}
-        <a href="/" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           <img src={logo} alt="Kaapu Tales Logo" className="brand-logo-img" />
           <span className="brand-text">कापु tales</span>
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="nav-menu">
-          <li><a href="#" className="nav-link">Home</a></li>
-          <li><a href="#collection" className="nav-link">Collection</a></li>
-          <li><a href="#about" className="nav-link">About</a></li>
-          <li><a href="#contact" className="nav-link">Contact</a></li>
+          <li><NavLink to="/" className="nav-link">Home</NavLink></li>
+          <li><NavLink to="/collection" className="nav-link">Collection</NavLink></li>
+          <li><NavLink to="/about" className="nav-link">About</NavLink></li>
+          <li><NavLink to="/contact" className="nav-link">Contact</NavLink></li>
           <li>
-            <a href="#collection" className="nav-cta-btn">Shop Now</a>
+            <Link to="/collection" className="nav-cta-btn">Shop Now</Link>
           </li>
           {/* Cart Icon */}
-          <li className="nav-cart">
+          {/* <li className="nav-cart">
             <FontAwesomeIcon icon={faShoppingCart} />
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-          </li>
+          </li> */}
         </ul>
-
-        {/* Mobile Toggle Icons */}
-        <button className="mobile-toggle" onClick={toggleMenu} aria-label="Toggle navigation">
-          <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={`mobile-nav-overlay ${isOpen ? 'active' : ''}`}>
-        <a href="#" className="mobile-nav-link" onClick={toggleMenu}>Home</a>
-        <a href="#collection" className="mobile-nav-link" onClick={toggleMenu}>Collection</a>
-        <a href="#about" className="mobile-nav-link" onClick={toggleMenu}>About</a>
-        <a href="#contact" className="mobile-nav-link" onClick={toggleMenu}>Contact</a>
-        <a href="#collection" className="mobile-nav-link nav-cta-btn" onClick={toggleMenu} style={{ width: 'auto', display: 'inline-block', fontSize: '1.2rem', padding: '10px 30px', color: 'white' }}>Shop Now</a>
       </div>
     </nav>
   );

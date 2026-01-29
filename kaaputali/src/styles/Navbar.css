@@ -7,6 +7,13 @@
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(58, 94, 140, 0.1);
     font-family: 'DM Serif Display', serif;
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+    box-sizing: border-box;
+}
+
+.navbar-custom.navbar-hidden {
+    transform: translateY(-100%);
 }
 
 .navbar-container {
@@ -17,6 +24,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
 /* Brand / Logo */
@@ -62,9 +70,11 @@
     transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: #3a5e8c;
     /* Darker Blue */
+    font-weight: 700;
 }
 
 .nav-cta-btn {
@@ -161,6 +171,28 @@
     }
 
     .mobile-toggle {
-        display: block;
+        display: none; /* Hide the hamburger menu */
+    }
+
+    .navbar-container {
+        height: 70px;
+        padding: 0 15px;
+        justify-content: center; /* Center content */
+    }
+
+    .navbar-brand {
+        margin: 0; /* Clear any margins */
+    }
+
+    .mobile-nav-overlay {
+        display: none; /* Hide the old overlay */
+    }
+    
+    .brand-text {
+        display: none; /* Hide text on mobile as requested */
+    }
+    
+    .brand-logo-img {
+        height: 40px; /* Slightly larger logo since text is gone */
     }
 }
