@@ -7,12 +7,17 @@ import I6 from "../assets/flowers/flower6.png";
 import I7 from "../assets/flowers/flower7.png";
 import I8 from "../assets/flowers/flower8.png";
 import I9 from "../assets/flowers/flower9.png";
+import I10 from "../assets/flowers/flower10.png";
+import I11 from "../assets/flowers/flower11.png";
 import K1 from "../assets/keyrings/keyring1.png";
 import K2 from "../assets/keyrings/keyring2.png";
+import K3 from "../assets/keyrings/keyring3.png";
 import W1 from "../assets/wearables/wearable1.png";
 import W2 from "../assets/wearables/wearable2.png";
 import W3 from "../assets/wearables/wearable3.png";
 import B1 from "../assets/bookmarks/bookmark1.png";
+import B2 from "../assets/bookmarks/bookmark2.png";
+import B3 from "../assets/bookmarks/bookmark3.png";
 import A1 from "../assets/accessories/accessory1.png";
 
 const products = [
@@ -87,15 +92,15 @@ const products = [
         imageUrl: I8,
         price: 250,
     },
-    {
-        id: 9,
-        name: "Fairy Glow Bouquet",
-        type: "flower",
-        description:
-            "Our Fairy Glow Bouquet is a one-of-a-kind arrangement featuring a mix of wool blossoms and twinkling fairy lights. It’s perfect for adding a touch of magic and warmth to any room, serving as a beautiful and unique piece of art that lasts forever.",
-        imageUrl: I9,
-        price: 600,
-    },
+    // {
+    //     id: 9,
+    //     name: "Fairy Glow Bouquet",
+    //     type: "flower",
+    //     description:
+    //         "Our Fairy Glow Bouquet is a one-of-a-kind arrangement featuring a mix of wool blossoms and twinkling fairy lights. It’s perfect for adding a touch of magic and warmth to any room, serving as a beautiful and unique piece of art that lasts forever.",
+    //     imageUrl: I9,
+    //     price: 600,
+    // },
     {
         id: 10,
         name: "Evil Eye Keychain",
@@ -114,6 +119,7 @@ const products = [
     },
     {
         id: 12,
+        featured: true, 
         name: "Yellow Earmuffs & Gloves Set",
         type: "accessory",
         description: "Adorable, plush pink and white fingerless gloves, tied with delicate white bows. These wrist warmers are perfect for keeping hands cozy and stylish while allowing full freedom of movement for your fingers.",
@@ -130,7 +136,7 @@ const products = [
     },
     {
         id: 14,
-        name: "Pink Fingerless Gloves",
+        name: "Red Fingerless Gloves",
         type: "accessory",
         description: "Elegant, hand-crocheted black fingerless gloves featuring bold magenta accents and matching magenta bows. Made from a soft, plush yarn for warmth and a dramatic, stylish look.",
         imageUrl: W3,
@@ -138,6 +144,7 @@ const products = [
     },
     {
         id: 15,
+        featured: true, 
         name: "Daisy Vine",
         type: "bookmark",
         description: "A handcrafted floral bookmark featuring a sweet white flower and a winding green vine, perfect for keeping your place in a favorite novel.",
@@ -146,6 +153,48 @@ const products = [
     },
     {
         id: 16,
+        name: "Classic Red Bookmark",
+        type: "bookmark",
+        description: "A cozy and durable hand-crocheted bookmark in a serene blue shade.",
+        imageUrl: B2,
+        price: 150,
+    },
+    {
+        id: 17,
+        featured: true, 
+        type: "flower",
+        name: "Meadow Sun Bouquet",
+        description: "A cheerful crochet arrangement featuring a vibrant sunflower centerpiece, soft lavender stems, and delicate pink blossoms. This wool-knit bouquet is wrapped in periwinkle blue paper, offering a rustic yet polished meadow-inspired aesthetic.",
+        imageUrl: I10,
+        price: 850,
+    },
+    {
+        id: 18,
+        type: "flower",
+        name: "Satin Rose Bouquet",
+        description: "A striking handcrafted bouquet of satin roses captured against traditional architecture. Features a blend of vivid pink and pristine white roses, wrapped in layered premium paper with gold-foil accents and a delicate white bow. Durable, elegant, and timeless.",
+        imageUrl: I11,
+        price: 1200,
+    },
+    {
+        id: 19,
+        featured: true, 
+        type: "keychain",
+        name: "Crochet Flower Keychains",
+        description: "Adorable pair of handcrafted crochet keychains featuring a vibrant sunflower and a classic white daisy. Made with soft, premium yarn and sturdy silver-tone rings. A perfect accessory for bags, keys, or as a small thoughtful gift.",
+        imageUrl: K3,
+        price: 250,
+    },
+    {
+        id: 20,
+        type: "bookmark",
+        name: "Pink Petal Bookmark",
+        description: "A dainty, petal-inspired crochet bookmark in soft baby pink. Features a textured, scalloped design with a delicate tassel at the end. Perfect for book lovers who appreciate handmade charm and want to keep their place in style.",
+        imageUrl: B3,
+        price: 200,
+    },
+    {
+        id: 21,
         name: "Sunset Wanderer Flower Clip",
         type: "accessory",
         description: "A single, cheerful hand-crocheted daisy flower with a vibrant yellow center and white petals. Perfect as a durable, charming accessory for motorcycle mirrors, bike handlebars, or backpack straps. Adds a touch of homemade warmth to any journey.",

@@ -10,8 +10,8 @@ import { faHandHoldingHeart, faLeaf, faPalette, faQuoteLeft } from "@fortawesome
 import "../styles/HomePage.css";
 
 function HomePage() {
-  // Feature the first 4 products
-  const featuredProducts = products.slice(0, 4);
+  // Feature the products
+  const featuredProducts = products.filter(product => product.featured);
   const [modelProduct, setModelProduct] = useState(null);
   const [showOrder, setShowOrder] = useState(false);
   const [orderProduct, setOrderProduct] = useState(null);
@@ -37,20 +37,20 @@ function HomePage() {
   const testimonials = [
     {
       id: 1,
-      name: "Aarav Sharma",
+      name: "Anonymous",
       text: "The handcrafted tulip I bought is absolutely stunning! It looks so real and adds such a warm touch to my desk.",
-      rating: 5
+      rating: 4
     },
     {
       id: 2,
-      name: "Priya Patel",
+      name: "Anonymous",
       text: "I love the sustainable materials used. It feels good to buy something beautiful that is also eco-friendly.",
       rating: 5
     },
     {
       id: 3,
-      name: "Rohan Gupta",
-      text: "The custom bouquet for my wife's anniversary was perfect. She adored it! Highly recommend Kaapu Tales.",
+      name: "Anonymous",
+      text: "Perfect for a Valintine's gift! Highly recommend Kaapu Tales.",
       rating: 4
     }
   ];
@@ -121,11 +121,13 @@ function HomePage() {
             <div key={testimonial.id} className="testimonial-card">
               <FontAwesomeIcon icon={faQuoteLeft} className="quote-icon" />
               <p className="testimonial-text">"{testimonial.text}"</p>
-              <h4 className="testimonial-name">- {testimonial.name}</h4>
-              <div className="testimonial-rating">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i} className="star">★</span>
-                ))}
+              <div className="testimonial-footer">
+                <h4 className="testimonial-name">- {testimonial.name}</h4>
+                <div className="testimonial-rating">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className="star">★</span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
@@ -146,11 +148,7 @@ function HomePage() {
             ))}
           </div>
         </div>
-        <div className="final-cta-container">
-          <Link to="/collection" className="nav-cta-btn big-cta white-cta">Shop Now</Link>
-        </div>
       </section>
-
     </div>
 
     {modelProduct && (

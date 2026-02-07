@@ -55,9 +55,6 @@ const NavBar = ({ cartCount = 0 }) => {
           <li><NavLink to="/collection" className="nav-link">Collection</NavLink></li>
           <li><NavLink to="/about" className="nav-link">About</NavLink></li>
           <li><NavLink to="/contact" className="nav-link">Contact</NavLink></li>
-          <li>
-            <Link to="/collection" className="nav-cta-btn">Shop Now</Link>
-          </li>
           {/* Cart Icon */}
           {/* <li className="nav-cart">
             <FontAwesomeIcon icon={faShoppingCart} />

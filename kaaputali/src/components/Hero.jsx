@@ -22,11 +22,6 @@ const Hero = () => {
                     Discover our exclusive collection of handmade wool flowers, accessories, and gifts.
                     Timeless beauty that never fades.
                 </p>
-                {/* Using standard anchor tag for now if Routing isn't fully set up, or Link if it is. 
-            Will use Link assuming Router context will be there. */}
-                <a href="#collection" className="hero-cta-btn">
-                    View Collection
-                </a>
             </div>
         </section>
     );

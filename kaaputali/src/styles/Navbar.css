@@ -79,7 +79,6 @@
 
 .nav-cta-btn {
     background-color: #3a5e8c;
-    /* Primary Blue */
     color: white;
     padding: 10px 24px;
     border: none;
@@ -92,7 +91,6 @@
 
 .nav-cta-btn:hover {
     background-color: #2c4769;
-    /* Darker Blue */
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(58, 94, 140, 0.2);
 }
