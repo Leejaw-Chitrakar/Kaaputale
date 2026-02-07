@@ -25,6 +25,9 @@ function ProductCard({ product, onView, onAddToCart }) {
           >
             View Details
           </button> */}
+          <p className="product-price">
+            Rs. {product.price}
+          </p>
       </div>
     </div>
   );
