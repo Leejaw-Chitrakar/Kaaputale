@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import ProductGrid from "../components/ProductGrid.jsx";
 import Model from "../components/Model.jsx";
 import Order from "../components/Order.jsx";
-import products from "../data/products";
+import { useProducts } from "../hooks/useProducts";
 import "../styles/HomePage.css"; // Reuse existing styles for now
 
 function CollectionPage() {
+  const { products, loading } = useProducts();
   const [modelProduct, setModelProduct] = useState(null);
   const [showOrder, setShowOrder] = useState(false);
   const [orderProduct, setOrderProduct] = useState(null);
@@ -51,11 +52,11 @@ function CollectionPage() {
               className={`filter-btn ${selectedCategory === category ? "active" : ""}`}
               onClick={() => setSelectedCategory(category)}
             >
-              {category === "All" ? "All" : 
-               category === "flower" ? "Flowers" :
-               category === "keychain" ? "Keychains" :
-               category === "bookmark" ? "Bookmarks" :
-               category === "accessory" ? "Accessories" : category}
+              {category === "All" ? "All" :
+                category === "flower" ? "Flowers" :
+                  category === "keychain" ? "Keychains" :
+                    category === "bookmark" ? "Bookmarks" :
+                      category === "accessory" ? "Accessories" : category}
             </button>
           ))}
         </div>
@@ -66,17 +67,17 @@ function CollectionPage() {
         />
       </div>
 
-    {modelProduct && (
-      <Model product={modelProduct} onClose={closeModel} onShowOrder={openOrder} />
-    )}
-    {showOrder && (
-      <div className="order-overlay">
-        <div className="order-container">
-          <Order onClose={closeOrder} product={orderProduct} />
+      {modelProduct && (
+        <Model product={modelProduct} onClose={closeModel} onShowOrder={openOrder} />
+      )}
+      {showOrder && (
+        <div className="order-overlay">
+          <div className="order-container">
+            <Order onClose={closeOrder} product={orderProduct} />
+          </div>
         </div>
-      </div>
-    )}
-  </>
+      )}
+    </>
   );
 }
 

@@ -4,12 +4,13 @@ import Hero from "../components/Hero.jsx";
 import ProductGrid from "../components/ProductGrid.jsx";
 import Model from "../components/Model.jsx";
 import Order from "../components/Order.jsx";
-import products from "../data/products";
+import { useProducts } from "../hooks/useProducts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart, faLeaf, faPalette, faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import "../styles/HomePage.css";
 
 function HomePage() {
+  const { products } = useProducts();
   // Feature the products
   const featuredProducts = products.filter(product => product.featured);
   const [modelProduct, setModelProduct] = useState(null);
@@ -68,100 +69,100 @@ function HomePage() {
   return (
     <>
       <div className="home-page-container page-fade-in">
-      <Hero />
+        <Hero />
 
-      {/* Featured Products Section */}
-      <section className="featured-section container">
-        <h2 className="section-title">Featured Collection</h2>
-        <p className="section-subtitle">Our most loved handcrafted blooms.</p>
-        <ProductGrid
-          products={featuredProducts}
-          showProductDetails={showProductDetails}
-        />
-        <div className="cta-container">
-          <Link to="/collection" className="nav-cta-btn big-cta">View All Products</Link>
-        </div>
-      </section>
+        {/* Featured Products Section */}
+        <section className="featured-section container">
+          <h2 className="section-title">Featured Collection</h2>
+          <p className="section-subtitle">Our most loved handcrafted blooms.</p>
+          <ProductGrid
+            products={featuredProducts}
+            showProductDetails={showProductDetails}
+          />
+          <div className="cta-container">
+            <Link to="/collection" className="nav-cta-btn big-cta">View All Products</Link>
+          </div>
+        </section>
 
-      {/* Why Choose Us Section */}
-      <section className="features-section">
-        <div className="features-container">
-          <h2 className="section-title">Why Choose Kaapu Tales?</h2>
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">
-                <FontAwesomeIcon icon={faHandHoldingHeart} />
+        {/* Why Choose Us Section */}
+        <section className="features-section">
+          <div className="features-container">
+            <h2 className="section-title">Why Choose Kaapu Tales?</h2>
+            <div className="features-grid">
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <FontAwesomeIcon icon={faHandHoldingHeart} />
+                </div>
+                <h3>Handcrafted with Love</h3>
+                <p>Every petal is carefully stitched by skilled artisans, ensuring unique and high-quality creations.</p>
               </div>
-              <h3>Handcrafted with Love</h3>
-              <p>Every petal is carefully stitched by skilled artisans, ensuring unique and high-quality creations.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <FontAwesomeIcon icon={faLeaf} />
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <FontAwesomeIcon icon={faLeaf} />
+                </div>
+                <h3>Sustainable Materials</h3>
+                <p>We use eco-friendly wool and materials to create beautiful products that are kind to the planet.</p>
               </div>
-              <h3>Sustainable Materials</h3>
-              <p>We use eco-friendly wool and materials to create beautiful products that are kind to the planet.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <FontAwesomeIcon icon={faPalette} />
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <FontAwesomeIcon icon={faPalette} />
+                </div>
+                <h3>Fully Customizable</h3>
+                <p>Create a bouquet that speaks your language. Custom colors and arrangements available upon request.</p>
               </div>
-              <h3>Fully Customizable</h3>
-              <p>Create a bouquet that speaks your language. Custom colors and arrangements available upon request.</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Testimonials Section */}
-      <section className="testimonials-section container">
-        <h2 className="section-title">What Our Customers Say</h2>
-        <div className="testimonials-grid">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="testimonial-card">
-              <FontAwesomeIcon icon={faQuoteLeft} className="quote-icon" />
-              <p className="testimonial-text">"{testimonial.text}"</p>
-              <div className="testimonial-footer">
-                <h4 className="testimonial-name">- {testimonial.name}</h4>
-                <div className="testimonial-rating">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="star">★</span>
-                  ))}
+        {/* Testimonials Section */}
+        <section className="testimonials-section container">
+          <h2 className="section-title">What Our Customers Say</h2>
+          <div className="testimonials-grid">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="testimonial-card">
+                <FontAwesomeIcon icon={faQuoteLeft} className="quote-icon" />
+                <p className="testimonial-text">"{testimonial.text}"</p>
+                <div className="testimonial-footer">
+                  <h4 className="testimonial-name">- {testimonial.name}</h4>
+                  <div className="testimonial-rating">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <span key={i} className="star">★</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      {/* Animated Quotes Section */}
-      <section className="quote-marquee-section">
-        <div className="quote-marquee-container">
-          <div className="quote-track">
-            {/* Duplicate the quotes to create an infinite scroll effect */}
-            {[...quotes, ...quotes].map((quote, index) => (
-              <div key={index} className="quote-card">
-                <FontAwesomeIcon icon={faQuoteLeft} className="quote-icon-card" />
-                <p className="quote-text">{quote}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
 
-    {modelProduct && (
-      <Model product={modelProduct} onClose={closeModel} onShowOrder={openOrder} />
-    )}
-    {showOrder && (
-      <div className="order-overlay">
-        <div className="order-container">
-          <Order onClose={closeOrder} product={orderProduct} />
-        </div>
+        {/* Call to Action Section */}
+        {/* Animated Quotes Section */}
+        <section className="quote-marquee-section">
+          <div className="quote-marquee-container">
+            <div className="quote-track">
+              {/* Duplicate the quotes to create an infinite scroll effect */}
+              {[...quotes, ...quotes].map((quote, index) => (
+                <div key={index} className="quote-card">
+                  <FontAwesomeIcon icon={faQuoteLeft} className="quote-icon-card" />
+                  <p className="quote-text">{quote}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
-    )}
-  </>
+
+      {modelProduct && (
+        <Model product={modelProduct} onClose={closeModel} onShowOrder={openOrder} />
+      )}
+      {showOrder && (
+        <div className="order-overlay">
+          <div className="order-container">
+            <Order onClose={closeOrder} product={orderProduct} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
