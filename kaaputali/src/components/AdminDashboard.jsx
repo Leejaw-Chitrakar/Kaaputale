@@ -593,6 +593,8 @@ export default function AdminDashboard({ onExit }) {
                     <StatsCard label="Featured" value={featuredCount} icon="⭐" color="#f59e0b" />
                     <StatsCard label="Flowers" value={typeCount("flower")} icon="🌸" color="#ec4899" />
                     <StatsCard label="Keychains" value={typeCount("keychain")} icon="🔑" color="#10b981" />
+                    <StatsCard label="Accessories" value={typeCount("accessory")} icon="🧣" color="#10b981" />
+                    <StatsCard label="Bookmarks" value={typeCount("bookmark")} icon="📖" color="#10b981" />
                 </div>
 
                 {/* Filters */}

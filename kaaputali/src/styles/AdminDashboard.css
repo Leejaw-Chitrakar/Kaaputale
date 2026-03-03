@@ -202,7 +202,7 @@
 /* ─── Stats Grid ──────────────────────────────────────────── */
 .ad-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 16px;
   padding: 20px 28px;
   flex-shrink: 0;
