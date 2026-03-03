@@ -28,7 +28,7 @@ const products = [
         description:
             "A delicate, handcrafted wool tulip in a soft pink hue, complemented by a sprig of lavender and wrapped in elegant paper. This beautiful, handmade flower is a timeless piece of art that will never wilt.",
         imageUrl: I1,
-        price: 250,
+        price: 400,
     },
     {
         id: 2,
@@ -55,7 +55,7 @@ const products = [
         description:
             "An elegant and minimalist bouquet, featuring a stunning handcrafted wool flower in classic white, paired with delicate sprigs of lavender. The arrangement is wrapped in sleek, dark paper for a striking contrast, making it a sophisticated and timeless piece of art.",
         imageUrl: I4,
-        price: 300,
+        price: 400,
     },
     {
         id: 5,
@@ -119,7 +119,7 @@ const products = [
     },
     {
         id: 12,
-        featured: true, 
+        featured: true,
         name: "Yellow Earmuffs & Gloves Set",
         type: "accessory",
         description: "Adorable, plush pink and white fingerless gloves, tied with delicate white bows. These wrist warmers are perfect for keeping hands cozy and stylish while allowing full freedom of movement for your fingers.",
@@ -144,7 +144,7 @@ const products = [
     },
     {
         id: 15,
-        featured: true, 
+        featured: true,
         name: "Daisy Vine",
         type: "bookmark",
         description: "A handcrafted floral bookmark featuring a sweet white flower and a winding green vine, perfect for keeping your place in a favorite novel.",
@@ -161,7 +161,7 @@ const products = [
     },
     {
         id: 17,
-        featured: true, 
+        featured: true,
         type: "flower",
         name: "Meadow Sun Bouquet",
         description: "A cheerful crochet arrangement featuring a vibrant sunflower centerpiece, soft lavender stems, and delicate pink blossoms. This wool-knit bouquet is wrapped in periwinkle blue paper, offering a rustic yet polished meadow-inspired aesthetic.",
@@ -174,16 +174,17 @@ const products = [
         name: "Satin Rose Bouquet",
         description: "A striking handcrafted bouquet of satin roses captured against traditional architecture. Features a blend of vivid pink and pristine white roses, wrapped in layered premium paper with gold-foil accents and a delicate white bow. Durable, elegant, and timeless.",
         imageUrl: I11,
-        price: 1200,
+        price: 800,
     },
     {
         id: 19,
-        featured: true, 
+        featured: true,
         type: "keychain",
         name: "Crochet Flower Keychains",
-        description: "Adorable pair of handcrafted crochet keychains featuring a vibrant sunflower and a classic white daisy. Made with soft, premium yarn and sturdy silver-tone rings. A perfect accessory for bags, keys, or as a small thoughtful gift.",
+        description: "Adorable handcrafted crochet keychains featuring a vibrant sunflower and a classic white daisy. Made with soft, premium yarn and sturdy silver-tone rings. A perfect accessory for bags, keys, or as a small thoughtful gift.",
         imageUrl: K3,
-        price: 250,
+        price: 150,
+        priceNote: "For each",
     },
     {
         id: 20,

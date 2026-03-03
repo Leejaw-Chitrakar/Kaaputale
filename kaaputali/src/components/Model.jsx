@@ -55,7 +55,7 @@ function Model({ product, onClose, onShowOrder }) {
             <p className="model-description">{product.description}</p>
             <div className="product-price">
               <p>
-                Price: <strong>RS.{product.price}</strong>
+                Price: <strong>RS.{product.price} {product.priceNote ? `(${product.priceNote})` : ""}</strong>
               </p>
             </div>
             <div className="model-actions">
