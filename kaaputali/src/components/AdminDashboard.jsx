@@ -32,7 +32,10 @@ import { auth, db } from "../firebase";
 import "../styles/AdminDashboard.css";
 
 // ─── Constants ───────────────────────────────────────────────
-const ADMIN_UID = import.meta.env.VITE_ADMIN_UID;
+const ADMIN_UIDS = (import.meta.env.VITE_ADMIN_UIDS || "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
 const APP_ID = "kaaputale-store";
 const COLLECTION_PATH = `artifacts/${APP_ID}/public/data/products`;
 
@@ -353,7 +356,7 @@ export default function AdminDashboard({ onExit }) {
     const [authLoading, setAuthLoading] = useState(true);
     const [loginLoading, setLoginLoading] = useState(false);
     const [loginError, setLoginError] = useState("");
-    const isAdmin = user && user.uid === ADMIN_UID;
+    const isAdmin = user && ADMIN_UIDS.includes(user.uid);
 
     // Data
     const [products, setProducts] = useState([]);
