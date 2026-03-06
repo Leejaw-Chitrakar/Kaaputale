@@ -87,16 +87,22 @@
   overflow-y: auto;
 }
 
+.ad-sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
 .ad-sidebar__logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 20px 20px;
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 8px;
 }
 
 .ad-sidebar__logo span:first-child {
@@ -927,7 +933,39 @@
   }
 }
 
-/* ─── Responsive ──────────────────────────────────────────── */
+/* ─── Responsive & Mobile Nav ─────────────────────────────── */
+.ad-mobile-menu-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 18px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ad-mobile-menu-btn:hover {
+  background: var(--bg-hover);
+}
+
+.ad-sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.ad-header__left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 @media (max-width: 1024px) {
   .ad-stats-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -943,8 +981,37 @@
     --sidebar-w: 0px;
   }
 
+  .ad-mobile-menu-btn,
+  .ad-sidebar-close {
+    display: block;
+  }
+
   .ad-sidebar {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    z-index: 10005;
+    background: var(--bg-surface);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    border-right: 1px solid var(--border);
+  }
+
+  .ad-sidebar--open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .ad-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 10004;
+    animation: ad-fade-in 0.2s ease;
   }
 
   .ad-header,
@@ -955,19 +1022,117 @@
     padding-right: 16px;
   }
 
+  .ad-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
   .ad-stats-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
 
+  .ad-stat-card {
+    padding: 8px 12px;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .ad-stat-icon {
+    font-size: 20px;
+  }
+
+  .ad-stat-value {
+    font-size: 16px;
+  }
+
+  .ad-stat-label {
+    display: none;
+  }
+
   .ad-modal--form {
+    width: 100%;
+  }
+
+  /* Table Cards */
+  .ad-table,
+  .ad-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .ad-table thead {
+    display: none;
+  }
+
+  .ad-tr {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0 16px;
+    margin-bottom: 12px;
+  }
+
+  .ad-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ad-table td:last-child {
+    border-bottom: none;
+  }
+
+  .ad-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+
+  .ad-table td>div,
+  .ad-table td>span,
+  .ad-table td>button {
+    text-align: right;
+  }
+
+  /* Product specific cell */
+  .ad-table td[data-label="Product"] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .ad-table td[data-label="Product"]::before {
+    margin-bottom: 4px;
+  }
+
+  .ad-table td[data-label="Product"]>div {
+    text-align: left;
     width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .ad-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .ad-form-row {
     grid-template-columns: 1fr;
+  }
+
+  .ad-login-card {
+    padding: 24px 20px;
   }
 }
 
@@ -1113,7 +1278,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 10px;
 }
@@ -1128,6 +1293,8 @@
 
 .ad-mini-card__info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Toggle switch */

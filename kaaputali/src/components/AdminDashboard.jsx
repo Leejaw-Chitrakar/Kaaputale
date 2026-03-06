@@ -363,6 +363,7 @@ export default function AdminDashboard({ onExit }) {
     const [theme, setTheme] = useState("dark");
     const [search, setSearch] = useState("");
     const [filterType, setFilterType] = useState("all");
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     // Modals
     const [addModal, setAddModal] = useState(false);
@@ -547,14 +548,22 @@ export default function AdminDashboard({ onExit }) {
         <div className="ad-root" data-theme={theme}>
             <Toast toasts={toasts} />
 
+            {/* ── Mobile Overlay ───────────────────────────────────── */}
+            {mobileMenuOpen && (
+                <div className="ad-sidebar-overlay" onClick={() => setMobileMenuOpen(false)} />
+            )}
+
             {/* ── Sidebar ──────────────────────────────────────── */}
-            <aside className="ad-sidebar">
-                <div className="ad-sidebar__logo">
-                    <span>🪡</span>
-                    <span>Kaaputale</span>
+            <aside className={`ad-sidebar ${mobileMenuOpen ? "ad-sidebar--open" : ""}`}>
+                <div className="ad-sidebar__header">
+                    <div className="ad-sidebar__logo">
+                        <span>🪡</span>
+                        <span>Kaaputale</span>
+                    </div>
+                    <button className="ad-sidebar-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
                 </div>
                 <nav className="ad-sidebar__nav">
-                    <div className="ad-nav-item ad-nav-item--active">
+                    <div className="ad-nav-item ad-nav-item--active" onClick={() => setMobileMenuOpen(false)}>
                         <span>🛍</span> Products
                     </div>
                 </nav>
@@ -565,7 +574,7 @@ export default function AdminDashboard({ onExit }) {
                     </div>
                     <button className="ad-btn ad-btn--ghost ad-btn--sm"
                         onClick={() => setTheme((t) => t === "dark" ? "light" : "dark")} title="Toggle theme">
-                        {theme === "dark" ? "☀" : "🌙"}
+                        {theme === "dark" ? "☀ Switch to Light Mode" : "🌙 Switch to Dark Mode"}
                     </button>
                     <button className="ad-btn ad-btn--ghost ad-btn--sm" onClick={handleSignOut}>Sign Out</button>
                     {onExit && (
@@ -578,9 +587,12 @@ export default function AdminDashboard({ onExit }) {
             <main className="ad-main">
                 {/* Header */}
                 <header className="ad-header">
-                    <div>
-                        <h1 className="ad-header__title">Products</h1>
-                        <p className="ad-header__sub">{filtered.length} of {products.length} products</p>
+                    <div className="ad-header__left">
+                        <button className="ad-mobile-menu-btn" onClick={() => setMobileMenuOpen(true)}>☰</button>
+                        <div>
+                            <h1 className="ad-header__title">Products</h1>
+                            <p className="ad-header__sub">{filtered.length} of {products.length} products</p>
+                        </div>
                     </div>
                     <button className="ad-btn ad-btn--primary" onClick={() => setAddModal(true)}>
                         + Add Product
@@ -599,18 +611,6 @@ export default function AdminDashboard({ onExit }) {
 
                 {/* Filters */}
                 <div className="ad-filters">
-                    <div className="ad-search-wrapper">
-                        <span className="ad-search-icon">🔍</span>
-                        <input
-                            className="ad-input ad-search"
-                            placeholder="Search products…"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
-                        {search && (
-                            <button className="ad-search-clear" onClick={() => setSearch("")}>✕</button>
-                        )}
-                    </div>
                     <select className="ad-input ad-select ad-filter-select"
                         value={filterType} onChange={(e) => setFilterType(e.target.value)}>
                         <option value="all">All Types</option>
@@ -652,7 +652,7 @@ export default function AdminDashboard({ onExit }) {
                             <tbody>
                                 {filtered.map((p) => (
                                     <tr key={p.id} className="ad-tr">
-                                        <td>
+                                        <td data-label="Image">
                                             <div className="ad-thumb-wrapper">
                                                 {p.imageUrl ? (
                                                     <img src={p.imageUrl} alt={p.name} className="ad-thumb"
@@ -662,22 +662,22 @@ export default function AdminDashboard({ onExit }) {
                                                 )}
                                             </div>
                                         </td>
-                                        <td style={{ maxWidth: 300 }}>
+                                        <td style={{ maxWidth: 300 }} data-label="Product">
                                             <div className="ad-cell-primary">{p.name}</div>
                                             <div className="ad-cell-secondary ad-clamp">{p.description}</div>
                                         </td>
-                                        <td>
+                                        <td data-label="Type">
                                             <span className="ad-type-badge">
                                                 {TYPE_EMOJI[p.type]} {p.type}
                                             </span>
                                         </td>
-                                        <td>
+                                        <td data-label="Price">
                                             <div className="ad-price">Rs. {p.price?.toLocaleString()}</div>
                                             {p.priceNote && (
                                                 <div className="ad-cell-secondary">({p.priceNote})</div>
                                             )}
                                         </td>
-                                        <td>
+                                        <td data-label="Featured">
                                             <button
                                                 className={`ad-featured-toggle ${p.featured ? "ad-featured-toggle--on" : ""}`}
                                                 onClick={() => toggleFeatured(p)}
@@ -686,10 +686,10 @@ export default function AdminDashboard({ onExit }) {
                                                 {p.featured ? "⭐ Yes" : "☆ No"}
                                             </button>
                                         </td>
-                                        <td>
+                                        <td data-label="Sort">
                                             <span className="ad-sort-badge">{p.sortOrder ?? "—"}</span>
                                         </td>
-                                        <td>
+                                        <td data-label="Actions">
                                             <div className="ad-actions">
                                                 <button className="ad-action-btn ad-action-btn--edit"
                                                     onClick={() => setEditTarget(p)} title="Edit">✏️</button>

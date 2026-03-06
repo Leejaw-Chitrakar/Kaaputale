@@ -7,12 +7,11 @@
 import { useState, useEffect } from "react";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
-import staticProducts from "../data/products";
 
 const COLLECTION_PATH = "artifacts/kaaputale-store/public/data/products";
 
 export function useProducts() {
-    const [products, setProducts] = useState(staticProducts); // start with local data instantly
+    const [products, setProducts] = useState([]); // start with local data instantly
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 

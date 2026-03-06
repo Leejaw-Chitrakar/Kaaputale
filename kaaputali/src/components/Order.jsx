@@ -1,56 +1,57 @@
 import React, { useState } from 'react';
 import { ShoppingCart, Truck, CreditCard, CheckCircle, Smartphone, AlertTriangle, X } from 'lucide-react';
 import '../styles/Order.css';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 import QR from '../assets/QR(LC).png';
-// import axios from 'axios'
-// Mock QR Code URL from Placehold.co
+
 const ESEWA_QR_URL = QR;
 
 // --- Reusable Input Field Component ---
 const FormInput = ({ label, id, type = 'text', value, onChange, required = true, placeholder = '' }) => (
-<div className="form-group">
-      <label htmlFor={id} className="form-label">
-            {label} {required && <span className="required-indicator">*</span>}
-      </label>
-      <input
-      type={type}
-      id={id}
-      name={id}
-      value={value}
-      onChange={onChange}
-      required={required}
-      className="form-input"
-      placeholder={placeholder}
-      />
-</div>
+      <div className="form-group">
+            <label htmlFor={id} className="form-label">
+                  {label} {required && <span className="required-indicator">*</span>}
+            </label>
+            <input
+                  type={type}
+                  id={id}
+                  name={id}
+                  value={value}
+                  onChange={onChange}
+                  required={required}
+                  className="form-input"
+                  placeholder={placeholder}
+            />
+      </div>
 );
 
 // --- Payment Option Card Component ---
 const PaymentOption = ({ method, currentMethod, icon, title, description, onChange }) => {
       const isSelected = currentMethod === method;
       return (
-      <div
-      className={`payment-option-card ${isSelected ? 'selected' : ''}`}
-      onClick={() => onChange(method)}
-      >
-            <div className="payment-content">
-                  <div className="payment-icon-wrapper">
-                        {icon}
+            <div
+                  className={`payment-option-card ${isSelected ? 'selected' : ''}`}
+                  onClick={() => onChange(method)}
+            >
+                  <div className="payment-content">
+                        <div className="payment-icon-wrapper">
+                              {icon}
+                        </div>
+                        <div className="payment-details">
+                              <h3>{title}</h3>
+                              <p>{description}</p>
+                        </div>
                   </div>
-                  <div className="payment-details">
-                        <h3>{title}</h3>
-                        <p>{description}</p>
-                  </div>
+                  <input
+                        type="radio"
+                        name="paymentMethod"
+                        value={method}
+                        checked={isSelected}
+                        onChange={() => onChange(method)}
+                        className="payment-radio"
+                  />
             </div>
-            <input
-            type="radio"
-            name="paymentMethod"
-            value={method}
-            checked={isSelected}
-            onChange={() => onChange(method)}
-            className="payment-radio"
-            />
-      </div>
       );
 };
 
@@ -70,36 +71,57 @@ const CheckoutForm = ({ onClose, product }) => {
       const [errorMessage, setErrorMessage] = useState('');
       // Example list of Districts for a select/input simulation
       const nepalDistricts = ['Kathmandu', 'Lalitpur', 'Bhaktapur'];
-      
+
       const handleChange = (e) => {
             const { name, value } = e.target;
             setDeliveryInfo(prev => ({ ...prev, [name]: value }));
       };
-      
-      const [order, setOrder] = useState()
-      const handleSubmit = (e) => {
-            axios.post('http://localhost:8080/add', {order: order})
-            .then(result => location.reload())
-            .catch(err => console.log(err))
+
+      const [order, setOrder] = useState();
+      const [isSubmitting, setIsSubmitting] = useState(false);
+
+      const handleSubmit = async (e) => {
             e.preventDefault();
             setErrorMessage('');
-            
+
             // Basic validation check for all required fields
             if (!deliveryInfo.fullName || !deliveryInfo.phone || !deliveryInfo.address || !deliveryInfo.district) {
                   setErrorMessage("Please fill in all required delivery information.");
                   return;
             }
-            
+
             if (paymentMethod === 'esewa' && !esewaTxnId) {
                   setErrorMessage("Please enter the E-Sewa Transaction ID to confirm payment.");
                   return;
             }
-           
-           // Simulating form submission
-           console.log('Order Submitted:', { deliveryInfo, paymentMethod, esewaTxnId });
-           setIsSubmitted(true);
+
+            setIsSubmitting(true);
+            try {
+                  const APP_ID = "kaaputale-store"; // Reusing the same logic from AdminDashboard
+                  const COLLECTION_PATH = `artifacts/${APP_ID}/public/data/orders`;
+
+                  const orderData = {
+                        product: product ? { id: product.id, name: product.name, price: product.price } : null,
+                        deliveryInfo,
+                        paymentMethod,
+                        esewaTxnId: paymentMethod === 'esewa' ? esewaTxnId : null,
+                        status: 'pending',
+                        createdAt: serverTimestamp(),
+                  };
+
+                  await addDoc(collection(db, COLLECTION_PATH), orderData);
+
+                  // Simulating form submission visually
+                  console.log('Order Submitted to Firestore:', orderData);
+                  setIsSubmitted(true);
+            } catch (err) {
+                  console.error("Error submitting order: ", err);
+                  setErrorMessage("Failed to submit order. Please try again.");
+            } finally {
+                  setIsSubmitting(false);
+            }
       };
-      
+
       if (isSubmitted) {
             return (
                   <div className="order-overlay">
@@ -135,7 +157,7 @@ const CheckoutForm = ({ onClose, product }) => {
                         )}
                         <h1 className="header-title">
                               <ShoppingCart />
-                                    Checkout
+                              Checkout
                         </h1>
                         <p className="form-description">Complete your order with delivery and payment details.</p>
                         {errorMessage && (
@@ -153,43 +175,43 @@ const CheckoutForm = ({ onClose, product }) => {
                                           <Truck />
                                           Delivery Information
                                     </h2>
-                                    
+
                                     <FormInput
-                                    label="Full Name"
-                                    id="fullName"
-                                    name="fullName"
-                                    value={deliveryInfo.fullName}
-                                    onChange={handleChange}
-                                    />
-                                    
-                                    <FormInput
-                                    label="Phone Number"
-                                    id="phone"
-                                    name="phone"
-                                    type="tel"
-                                    value={deliveryInfo.phone}
-                                    onChange={handleChange}
+                                          label="Full Name"
+                                          id="fullName"
+                                          name="fullName"
+                                          value={deliveryInfo.fullName}
+                                          onChange={handleChange}
                                     />
 
                                     <FormInput
-                                    label="Street Address / Area"
-                                    id="address"
-                                    name="address"
-                                    value={deliveryInfo.address}
-                                    onChange={handleChange}
+                                          label="Phone Number"
+                                          id="phone"
+                                          name="phone"
+                                          type="tel"
+                                          value={deliveryInfo.phone}
+                                          onChange={handleChange}
                                     />
-                                    
+
+                                    <FormInput
+                                          label="Street Address / Area"
+                                          id="address"
+                                          name="address"
+                                          value={deliveryInfo.address}
+                                          onChange={handleChange}
+                                    />
+
                                     <div className="form-group">
                                           <label htmlFor="district" className="form-label">
                                                 District <span className="required-indicator">*</span>
                                           </label>
                                           <select
-                                          id="district"
-                                          name="district"
-                                          value={deliveryInfo.district}
-                                          onChange={handleChange}
-                                          required
-                                          className="form-select"
+                                                id="district"
+                                                name="district"
+                                                value={deliveryInfo.district}
+                                                onChange={handleChange}
+                                                required
+                                                className="form-select"
                                           >
                                                 <option value="" disabled>Select District</option>
                                                 {nepalDistricts.map(district => (
@@ -206,20 +228,20 @@ const CheckoutForm = ({ onClose, product }) => {
                                     </h2>
                                     <div className="payment-options-list">
                                           <PaymentOption
-                                          method="esewa"
-                                          currentMethod={paymentMethod}
-                                          icon={<Smartphone className="payment-option-icon" />}
-                                          title="E-Sewa (Recommended)"
-                                          description="Pay instantly by scanning the QR code."
-                                          onChange={setPaymentMethod}
+                                                method="esewa"
+                                                currentMethod={paymentMethod}
+                                                icon={<Smartphone className="payment-option-icon" />}
+                                                title="E-Sewa (Recommended)"
+                                                description="Pay instantly by scanning the QR code."
+                                                onChange={setPaymentMethod}
                                           />
                                           <PaymentOption
-                                          method="cod"
-                                          currentMethod={paymentMethod}
-                                          icon={<Truck className="payment-option-icon" />}
-                                          title="Cash on Delivery (COD)"
-                                          description="Pay with cash when the delivery reaches your address."
-                                          onChange={setPaymentMethod}
+                                                method="cod"
+                                                currentMethod={paymentMethod}
+                                                icon={<Truck className="payment-option-icon" />}
+                                                title="Cash on Delivery (COD)"
+                                                description="Pay with cash when the delivery reaches your address."
+                                                onChange={setPaymentMethod}
                                           />
                                     </div>
                                     {/* Conditional Payment Content */}
@@ -230,10 +252,10 @@ const CheckoutForm = ({ onClose, product }) => {
                                                       <h4 className="payment-sub-heading esewa-heading">E-Sewa Payment Instructions (Nepal)</h4>
                                                       <div className="qr-code-wrapper">
                                                             <img
-                                                            src={ESEWA_QR_URL}
-                                                            alt="E-Sewa QR Code"
-                                                            className="qr-code-image"
-                                                            onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/200x200/cccccc/000000?text=QR+Error"; }}
+                                                                  src={ESEWA_QR_URL}
+                                                                  alt="E-Sewa QR Code"
+                                                                  className="qr-code-image"
+                                                                  onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/200x200/cccccc/000000?text=QR+Error"; }}
                                                             />
                                                       </div>
                                                       <p className="payment-instructions">
@@ -242,33 +264,34 @@ const CheckoutForm = ({ onClose, product }) => {
                                                             Once payment is successful, please enter the <b>Transaction ID</b> below for verification.
                                                       </p>
                                                       <FormInput
-                                                      label="E-Sewa Transaction ID"
-                                                      id="esewaTxnId"
-                                                      name="esewaTxnId"
-                                                      value={esewaTxnId}
-                                                      onChange={(e) => setEsewaTxnId(e.target.value)}
-                                                      placeholder="Enter 10-digit Txn ID"
-                                                      required={true}
+                                                            label="E-Sewa Transaction ID"
+                                                            id="esewaTxnId"
+                                                            name="esewaTxnId"
+                                                            value={esewaTxnId}
+                                                            onChange={(e) => setEsewaTxnId(e.target.value)}
+                                                            placeholder="Enter 10-digit Txn ID"
+                                                            required={true}
                                                       />
                                                 </div>
-                                                ) : (
-                                                      // COD Details
-                                                      <div>
-                                                            <h4 className="payment-sub-heading cod-heading">Cash on Delivery (COD)</h4>
-                                                            <p className="payment-instructions">
-                                                                  Please keep the exact amount ready for the delivery person. There may be a small handling fee applied, which will be confirmed when we call you.
-                                                            </p>
-                                                      </div>
-                                                )
+                                          ) : (
+                                                // COD Details
+                                                <div>
+                                                      <h4 className="payment-sub-heading cod-heading">Cash on Delivery (COD)</h4>
+                                                      <p className="payment-instructions">
+                                                            Please keep the exact amount ready for the delivery person. There may be a small handling fee applied, which will be confirmed when we call you.
+                                                      </p>
+                                                </div>
+                                          )
                                           }
                                     </div>
                               </div>
                         </div>
                         <button
-                        type="submit"
-                        className="submit-button" onClick={handleSubmit}
+                              type="submit"
+                              disabled={isSubmitting}
+                              className="submit-button"
                         >
-                              Confirm Order
+                              {isSubmitting ? "Processing..." : "Confirm Order"}
                         </button>
                   </form>
             </div>
