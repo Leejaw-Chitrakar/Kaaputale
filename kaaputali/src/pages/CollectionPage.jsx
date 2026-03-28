@@ -15,9 +15,10 @@ function CollectionPage() {
 
   const categories = ["All", "flower", "keychain", "bookmark", "accessory"];
 
-  const filteredProducts = selectedCategory === "All"
-    ? products
-    : products.filter(product => product.type === selectedCategory);
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.type === selectedCategory);
 
   const showProductDetails = (product) => {
     setModelProduct(product);
@@ -39,7 +40,10 @@ function CollectionPage() {
 
   return (
     <>
-      <div className="collection-page container page-fade-in" style={{ marginTop: '100px', marginBottom: '50px' }}>
+      <div
+        className="collection-page container page-fade-in"
+        style={{ marginTop: "100px", marginBottom: "50px" }}
+      >
         <h2 className="collection-title">Our Collection</h2>
         <p className="collection-description">
           Handcrafted blossoms that bloom forever in soft, cozy wool.
@@ -52,11 +56,17 @@ function CollectionPage() {
               className={`filter-btn ${selectedCategory === category ? "active" : ""}`}
               onClick={() => setSelectedCategory(category)}
             >
-              {category === "All" ? "All" :
-                category === "flower" ? "Flowers" :
-                  category === "keychain" ? "Keychains" :
-                    category === "bookmark" ? "Bookmarks" :
-                      category === "accessory" ? "Accessories" : category}
+              {category === "All"
+                ? "All"
+                : category === "flower"
+                  ? "Flowers"
+                  : category === "keychain"
+                    ? "Keychains"
+                    : category === "bookmark"
+                      ? "Bookmarks"
+                      : category === "accessory"
+                        ? "Accessories"
+                        : category}
             </button>
           ))}
         </div>
@@ -68,7 +78,11 @@ function CollectionPage() {
       </div>
 
       {modelProduct && (
-        <Model product={modelProduct} onClose={closeModel} onShowOrder={openOrder} />
+        <Model
+          product={modelProduct}
+          onClose={closeModel}
+          onShowOrder={openOrder}
+        />
       )}
       {showOrder && (
         <div className="order-overlay">

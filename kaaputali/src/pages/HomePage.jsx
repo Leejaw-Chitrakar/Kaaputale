@@ -6,13 +6,18 @@ import Model from "../components/Model.jsx";
 import Order from "../components/Order.jsx";
 import { useProducts } from "../hooks/useProducts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandHoldingHeart, faLeaf, faPalette, faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHandHoldingHeart,
+  faLeaf,
+  faPalette,
+  faQuoteLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles/HomePage.css";
 
 function HomePage() {
   const { products } = useProducts();
   // Feature the products
-  const featuredProducts = products.filter(product => product.featured);
+  const featuredProducts = products.filter((product) => product.featured);
   const [modelProduct, setModelProduct] = useState(null);
   const [showOrder, setShowOrder] = useState(false);
   const [orderProduct, setOrderProduct] = useState(null);
@@ -40,20 +45,20 @@ function HomePage() {
       id: 1,
       name: "Anonymous",
       text: "The handcrafted tulip I bought is absolutely stunning! It looks so real and adds such a warm touch to my desk.",
-      rating: 4
+      rating: 4,
     },
     {
       id: 2,
       name: "Anonymous",
       text: "I love the sustainable materials used. It feels good to buy something beautiful that is also eco-friendly.",
-      rating: 5
+      rating: 5,
     },
     {
       id: 3,
       name: "Anonymous",
       text: "Perfect for a Valintine's gift! Highly recommend Kaapu Tales.",
-      rating: 4
-    }
+      rating: 4,
+    },
   ];
 
   const quotes = [
@@ -63,7 +68,7 @@ function HomePage() {
     "Flowers are the music of the ground.",
     "Love is the flower you've got to let grow.",
     "Deep in their roots, all flowers keep the light.",
-    "To plant a garden is to believe in tomorrow."
+    "To plant a garden is to believe in tomorrow.",
   ];
 
   return (
@@ -80,7 +85,9 @@ function HomePage() {
             showProductDetails={showProductDetails}
           />
           <div className="cta-container">
-            <Link to="/collection" className="nav-cta-btn big-cta">View All Products</Link>
+            <Link to="/collection" className="nav-cta-btn big-cta">
+              View All Products
+            </Link>
           </div>
         </section>
 
@@ -94,21 +101,30 @@ function HomePage() {
                   <FontAwesomeIcon icon={faHandHoldingHeart} />
                 </div>
                 <h3>Handcrafted with Love</h3>
-                <p>Every petal is carefully stitched by skilled artisans, ensuring unique and high-quality creations.</p>
+                <p>
+                  Every petal is carefully stitched by skilled artisans,
+                  ensuring unique and high-quality creations.
+                </p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">
                   <FontAwesomeIcon icon={faLeaf} />
                 </div>
                 <h3>Sustainable Materials</h3>
-                <p>We use eco-friendly wool and materials to create beautiful products that are kind to the planet.</p>
+                <p>
+                  We use eco-friendly wool and materials to create beautiful
+                  products that are kind to the planet.
+                </p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">
                   <FontAwesomeIcon icon={faPalette} />
                 </div>
                 <h3>Fully Customizable</h3>
-                <p>Create a bouquet that speaks your language. Custom colors and arrangements available upon request.</p>
+                <p>
+                  Create a bouquet that speaks your language. Custom colors and
+                  arrangements available upon request.
+                </p>
               </div>
             </div>
           </div>
@@ -126,7 +142,9 @@ function HomePage() {
                   <h4 className="testimonial-name">- {testimonial.name}</h4>
                   <div className="testimonial-rating">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="star">★</span>
+                      <span key={i} className="star">
+                        ★
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -143,7 +161,10 @@ function HomePage() {
               {/* Duplicate the quotes to create an infinite scroll effect */}
               {[...quotes, ...quotes].map((quote, index) => (
                 <div key={index} className="quote-card">
-                  <FontAwesomeIcon icon={faQuoteLeft} className="quote-icon-card" />
+                  <FontAwesomeIcon
+                    icon={faQuoteLeft}
+                    className="quote-icon-card"
+                  />
                   <p className="quote-text">{quote}</p>
                 </div>
               ))}
@@ -153,7 +174,11 @@ function HomePage() {
       </div>
 
       {modelProduct && (
-        <Model product={modelProduct} onClose={closeModel} onShowOrder={openOrder} />
+        <Model
+          product={modelProduct}
+          onClose={closeModel}
+          onShowOrder={openOrder}
+        />
       )}
       {showOrder && (
         <div className="order-overlay">
