@@ -1,0 +1,148 @@
+/* ════════════════════════════════════════════════════════════
+   ContactUs.css — Kaaputale Branded Contact Styles
+   ════════════════════════════════════════════════════════════ */
+
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* Matching your main site background gradient */
+  background: linear-gradient(135deg, #e3f0fa 0%, #aacbdb 40%, #e7eafc 100%);
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Background animated elements matching site colors */
+.contact-section::before,
+.contact-section::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.contact-section::before {
+  background: #3a5e8c;
+  top: -100px;
+  left: -100px;
+  animation: float 20s infinite alternate;
+}
+
+.contact-section::after {
+  background: #b3d6ec;
+  bottom: -100px;
+  right: -100px;
+  animation: float 25s infinite alternate-reverse;
+}
+
+@keyframes float {
+  from { transform: translate(0, 0); }
+  to { transform: translate(100px, 100px); }
+}
+
+.contact-centered-card {
+  width: 100%;
+  max-width: 500px;
+  /* Matching your .container styles */
+  background: rgba(227, 240, 250, 0.92);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 1.5rem;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(179, 214, 236, 0.2);
+  border: 1.5px solid #b3d6ec;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-family: "DM Serif Display", serif;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  /* Matching your .section-title gradient */
+  background: linear-gradient(135deg, #3a5e8c 0%, #2c4769 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.contact-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #6a7ba2;
+  margin-bottom: 40px;
+  font-family: "Inter", sans-serif;
+  opacity: 0.95;
+}
+
+.info-items-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #3a5e8c;
+  font-family: "Inter", sans-serif;
+}
+
+.info-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(179, 214, 236, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: #3a5e8c;
+  font-size: 1.1rem;
+  border: 1px solid #b3d6ec;
+}
+
+.contact-insta-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* We'll keep the Instagram brand colors for the button to stay recognizable */
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff !important;
+  padding: 16px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px rgba(220, 39, 67, 0.2);
+}
+
+.contact-insta-btn:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 15px 35px rgba(220, 39, 67, 0.3);
+}
+
+.contact-insta-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive fixes */
+@media (max-width: 500px) {
+  .contact-centered-card {
+    padding: 40px 24px;
+  }
+}
