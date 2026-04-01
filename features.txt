@@ -1,0 +1,37 @@
+KAAPUTALE PROJECT FEATURES LIST
+===============================
+
+1. CORE E-COMMERCE FEATURES
+---------------------------
+- Featured Collections: Top handcrafted items displayed on the Home page.
+- Product Catalog: Comprehensive listing of all products.
+- Product Filtering: Sort products by type (Flowers, Keychains, Accessories, Bookmarks).
+- Product Details (Model): Interactive modal for high-quality previews and full descriptions.
+- Real-time Sync: Automatic updates from Firestore using onSnapshot for prices and availability.
+- Loading States: Skeleton animations for better UX during product data fetches.
+
+2. PROFESSIONAL ADMIN DASHBOARD
+-------------------------------
+- Secure Access: Invisible gateway hidden behind URL hash (#admin-panel).
+- Multi-UID Auth: Multiple designated admins can log in via Firebase Authentication.
+- Full Product CRUD: Add, Edit, and Delete products directly from the dashboard.
+- Integrated Image Uploads: Direct uploads to external API (ImgBB) without manual URL pasting.
+- Dashboard Analytics: Real-time stats for total products, featured items, and categorical counts.
+- Sort Order Control: Manual control over which products appear first in the catalog.
+- Inline Feature Toggles: One-click "Featured" status update for product highlighting.
+- Theme Customization: Native support for Dark and Light modes for admin productivity.
+
+3. USER EXPERIENCE (UX) & DESIGN
+--------------------------------
+- Mobile-First Philosophy: Completely responsive design optimized for small screens.
+- Mobile Bottom Navigation: App-like navigation bar for easy access on smartphones.
+- Toast Notifications: Real-time pop-up alerts for success/error feedback on all actions.
+- Performance Monitoring: Integrated Firebase Performance and Analytics for site optimization.
+- Custom Branding: Themed hero sections, handcrafted highlights, and sustainable materials showcase.
+
+4. CONTENT & BRANDING
+---------------------
+- Testimonials Section: Customer feedback display to build trust.
+- Quote Marquee: Animated sections for brand-aligned quotes.
+- Contact Integration: Integrated contact page for customer inquiries.
+- About the Brand: Dedicated storytelling section for "Kaaputale" artisan values.
